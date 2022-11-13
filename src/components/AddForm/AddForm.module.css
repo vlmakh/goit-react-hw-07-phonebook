@@ -1,0 +1,45 @@
+.addForm {
+  text-align: left;
+  width: 360px;
+  margin: 8px auto 0;
+  padding: 16px;
+  border: 1px solid #212121;
+  border-radius: 4px;
+}
+
+.addInput {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  padding: 4px;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: color 250ms linear, background-color 250ms linear;
+}
+
+.addButton:hover {
+  background-color: green;
+  color: white;
+}
+
+.mistake {
+  position: absolute;
+  bottom: 0;
+  transform: translatey(100%);
+
+  font-size: 10px;
+  background-color: white;
+  color: red;
+}
