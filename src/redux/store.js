@@ -1,22 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
-const persistConfig = {
-  key: 'phonebook',
-  storage,
-  whitelist: ['contacts'],
-};
 
 const startData = [
   { id: nanoid(4), name: 'Arnold Schwarzenegger', number: '5558801' },
@@ -25,12 +8,12 @@ const startData = [
   { id: nanoid(4), name: 'Jason Statham', number: '5558804' },
 ];
 
-// const savedData = JSON.parse(localStorage.getItem('phonebook'));
+const savedData = JSON.parse(localStorage.getItem('phonebook'));
 
 const myContacts = createSlice({
   name: 'contacts',
   initialState: {
-    contacts: startData,
+    contacts: savedData ? savedData : startData,
     filter: '',
   },
   reducers: {
@@ -49,7 +32,7 @@ const myContacts = createSlice({
         };
         state.contacts.push(newContact);
       }
-      // localStorage.setItem('phonebook', JSON.stringify(contacts));
+      localStorage.setItem('phonebook', JSON.stringify(state.contacts));
     },
     deleteContact(state, action) {
       if (global.confirm('Delete contact?')) {
@@ -57,27 +40,17 @@ const myContacts = createSlice({
           ({ id }) => id !== action.payload
         );
       }
-      // localStorage.setItem('phonebook', JSON.stringify(contacts));
+      localStorage.setItem('phonebook', JSON.stringify(state.contacts));
     },
     filterChange: (state, action) => {
       state.filter = action.payload;
-      // localStorage.setItem('phonebook', JSON.stringify(contacts));
+      localStorage.setItem('phonebook', JSON.stringify(state.contacts));
     },
   },
 });
 
-const persistedReducer = persistReducer(persistConfig, myContacts.reducer);
-
 export const { addContact, deleteContact, filterChange } = myContacts.actions;
 
 export const store = configureStore({
-  reducer: { contacts: persistedReducer },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+  reducer: { contacts: myContacts.reducer },
 });
-
-export const persistor = persistStore(store);
