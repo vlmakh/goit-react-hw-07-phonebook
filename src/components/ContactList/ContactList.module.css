@@ -13,6 +13,7 @@
 }
 
 .contactName {
+  margin-left: 8px;
   font-size: 16px;
   font-weight: 600;
 }
@@ -34,16 +35,15 @@
   cursor: pointer;
   color:#212121;
 
-  transition: color 250ms linear, background-color 250ms linear;
+  transition: color 250ms linear;
 }
 
 .delButton:hover {
-  background-color: red;
-  color: white;
+  color: red;
 }
 
-.icon {
+/* .icon {
   width: 20px;
   fill: currentColor;
   height: auto;
-}
+} */

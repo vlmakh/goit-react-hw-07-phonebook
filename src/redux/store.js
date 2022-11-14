@@ -14,6 +14,8 @@ const myContacts = createSlice({
   name: 'contacts',
   initialState: {
     contacts: savedData ? savedData : startData,
+    isLoading: false,
+    error: null,
     filter: '',
   },
   reducers: {

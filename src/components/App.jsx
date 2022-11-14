@@ -10,6 +10,9 @@ function App() {
   const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.contacts.filter);
 
+  const test = useSelector(state => state.contacts);
+  console.log(test)
+
   const handleAdd = contact => {
     dispatch(addContact(contact));
   };
@@ -32,7 +35,13 @@ function App() {
       <h1>Phonebook</h1>
       <AddForm onSubmit={handleAdd} />
 
-      <Box p={3} mt={2} border="1px solid #212121" borderRadius={3}>
+      <Box
+        p={3}
+        mt={2}
+        border="1px solid #212121"
+        borderRadius={3}
+        boxShadow="0px 4px 8px rgba(0, 0, 0, 0.2)"
+      >
         <h2>Contacts</h2>
 
         <Filter value={filter} onChange={handleFilter} />
