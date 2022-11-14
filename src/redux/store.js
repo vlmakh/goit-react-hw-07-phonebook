@@ -2,16 +2,36 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 
 const startData = [
-  { id: nanoid(4), name: 'Arnold Schwarzenegger', number: '5558801' },
-  { id: nanoid(4), name: 'Sylvester Stallone', number: '5558802' },
-  { id: nanoid(4), name: 'Bruce Willis', number: '5558803' },
-  { id: nanoid(4), name: 'Jason Statham', number: '5558804' },
+  {
+    id: nanoid(4),
+    name: 'Arnold Schwarzenegger',
+    number: '5558801',
+    createdAt: '2022-11-14T00:42:34.001Z',
+  },
+  {
+    id: nanoid(4),
+    name: 'Sylvester Stallone',
+    number: '5558802',
+    createdAt: '2022-11-14T00:42:34.001Z',
+  },
+  {
+    id: nanoid(4),
+    name: 'Bruce Willis',
+    number: '5558803',
+    createdAt: '2022-11-14T00:42:34.001Z',
+  },
+  {
+    id: nanoid(4),
+    name: 'Jason Statham',
+    number: '5558804',
+    createdAt: '2022-11-14T00:42:34.001Z',
+  },
 ];
 
 const savedData = JSON.parse(localStorage.getItem('phonebook'));
 
 const myContacts = createSlice({
-  name: 'contacts',
+  name: 'phonebook',
   initialState: {
     contacts: savedData ? savedData : startData,
     isLoading: false,
@@ -31,6 +51,7 @@ const myContacts = createSlice({
           id: nanoid(4),
           name: action.payload.name,
           number: action.payload.number,
+          createdAt: '',
         };
         state.contacts.push(newContact);
       }
@@ -54,5 +75,5 @@ const myContacts = createSlice({
 export const { addContact, deleteContact, filterChange } = myContacts.actions;
 
 export const store = configureStore({
-  reducer: { contacts: myContacts.reducer },
+  reducer: { phonebook: myContacts.reducer },
 });

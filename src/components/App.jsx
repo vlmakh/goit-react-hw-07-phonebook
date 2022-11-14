@@ -7,11 +7,8 @@ import { addContact, deleteContact, filterChange } from 'redux/store';
 
 function App() {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contacts);
-  const filter = useSelector(state => state.contacts.filter);
-
-  const test = useSelector(state => state.contacts);
-  console.log(test)
+  const contacts = useSelector(state => state.phonebook.contacts);
+  const filter = useSelector(state => state.phonebook.filter);
 
   const handleAdd = contact => {
     dispatch(addContact(contact));
