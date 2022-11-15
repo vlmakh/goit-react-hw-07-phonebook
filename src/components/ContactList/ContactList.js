@@ -7,7 +7,7 @@ export function ContactList({ contacts, deleteContact }) {
   return (
     <ul className={css.contactList}>
       {contacts
-        .sort((a, b) => a.name.localeCompare(b.name))
+        // .sort((a, b) => a.name.localeCompare(b.name))
         .map(({ id, name, number }) => (
           <li key={id} className={css.contactItem}>
             <BsPersonCircle size="16" />

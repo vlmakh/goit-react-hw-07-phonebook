@@ -1,40 +1,41 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
+import { phonebookApi } from 'services/api';
 
-const startData = [
-  {
-    id: nanoid(4),
-    name: 'Arnold Schwarzenegger',
-    number: '5558801',
-    createdAt: '2022-11-14T00:42:34.001Z',
-  },
-  {
-    id: nanoid(4),
-    name: 'Sylvester Stallone',
-    number: '5558802',
-    createdAt: '2022-11-14T00:42:34.001Z',
-  },
-  {
-    id: nanoid(4),
-    name: 'Bruce Willis',
-    number: '5558803',
-    createdAt: '2022-11-14T00:42:34.001Z',
-  },
-  {
-    id: nanoid(4),
-    name: 'Jason Statham',
-    number: '5558804',
-    createdAt: '2022-11-14T00:42:34.001Z',
-  },
-];
+// const startData = [
+//   {
+//     id: nanoid(4),
+//     name: 'Arnold Schwarzenegger',
+//     number: '5558801',
+//     createdAt: '2022-11-14T00:42:34.001Z',
+//   },
+//   {
+//     id: nanoid(4),
+//     name: 'Sylvester Stallone',
+//     number: '5558802',
+//     createdAt: '2022-11-14T00:42:34.001Z',
+//   },
+//   {
+//     id: nanoid(4),
+//     name: 'Bruce Willis',
+//     number: '5558803',
+//     createdAt: '2022-11-14T00:42:34.001Z',
+//   },
+//   {
+//     id: nanoid(4),
+//     name: 'Jason Statham',
+//     number: '5558804',
+//     createdAt: '2022-11-14T00:42:34.001Z',
+//   },
+// ];
 
-const savedData = JSON.parse(localStorage.getItem('phonebook'));
+// const savedData = JSON.parse(localStorage.getItem('phonebook'));
 
 const myContacts = createSlice({
   name: 'phonebook',
   initialState: {
-    contacts: savedData ? savedData : startData,
-    isLoading: false,
+    contacts: [],
+    isLoading: true,
     error: null,
     filter: '',
   },
@@ -75,5 +76,10 @@ const myContacts = createSlice({
 export const { addContact, deleteContact, filterChange } = myContacts.actions;
 
 export const store = configureStore({
-  reducer: { phonebook: myContacts.reducer },
+  reducer: {
+    [phonebookApi.reducerPath]: phonebookApi.reducer,
+    // phonebook: myContacts.reducer,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(phonebookApi.middleware),
 });

@@ -4,11 +4,17 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact, deleteContact, filterChange } from 'redux/store';
+import { useGetContactsQuery } from 'services/api'
 
 function App() {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.phonebook.contacts);
+  // const contacts = useSelector(state => state.phonebook.contacts);
   const filter = useSelector(state => state.phonebook.filter);
+  const { data, error, isLoading } = useGetContactsQuery();
+  console.log(data)
+  
+  // const state = useSelector(state => state);
+  // console.log(state)
 
   const handleAdd = contact => {
     dispatch(addContact(contact));
@@ -22,10 +28,10 @@ function App() {
     dispatch(filterChange(event.currentTarget.value));
   };
 
-  const normalizedFilter = filter.toLowerCase();
-  const filteredContacts = contacts.filter(el =>
-    el.name.toLowerCase().includes(normalizedFilter)
-  );
+  // const normalizedFilter = filter.toLowerCase();
+  // const filteredContacts = contacts.filter(el =>
+  //   el.name.toLowerCase().includes(normalizedFilter)
+  // );
 
   return (
     <Box width="360px" mx="auto" py={2}>
@@ -43,7 +49,7 @@ function App() {
 
         <Filter value={filter} onChange={handleFilter} />
 
-        <ContactList contacts={filteredContacts} deleteContact={handleDelete} />
+        <ContactList contacts={data ?? []} deleteContact={handleDelete} />
       </Box>
     </Box>
   );
