@@ -10,6 +10,7 @@ export function Filter({ value, onChange }) {
       <input
         className={css.filterInput}
         type="text"
+        name="filter"
         value={value}
         onChange={onChange}
         placeholder="Find contact by name"

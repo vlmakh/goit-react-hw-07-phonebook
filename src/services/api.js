@@ -11,16 +11,26 @@ export const phonebookApi = createApi({
       query: () => `/phonebook`,
       providesTags: ['Contact'],
     }),
+    addContact: builder.mutation({
+      query: newContact => ({
+        url: `/phonebook`,
+        method: 'POST',
+        body: newContact,
+      }),
+      invalidatesTags: ['Contact'],
+    }),
     deleteContact: builder.mutation({
-      query(id) {
-        return {
-          url: `phonebook/${id}`,
-          method: 'DELETE',
-        };
-      },
-      invalidatesTags: (result, error, id) => [{ type: 'Contact', id }],
+      query: id => ({
+        url: `phonebook/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Contact'],
     }),
   }),
 });
 
-export const { useGetContactsQuery, useDeleteContactMutation } = phonebookApi;
+export const {
+  useGetContactsQuery,
+  useAddContactMutation,
+  useDeleteContactMutation,
+} = phonebookApi;
