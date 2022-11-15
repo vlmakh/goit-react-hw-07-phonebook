@@ -1,7 +1,8 @@
 # goit-react-hw-06-phonebook
 
 - Refactor using Redux Toolkit - configureStore, createSlice
-- Saving to LocalStorage done using Redux Persist
+- Refactor using backend on mockapi
+- RTK Query is used for async fetch to backend
 
 Used libraries:
 
