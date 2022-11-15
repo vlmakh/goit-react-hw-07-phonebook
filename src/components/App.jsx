@@ -4,18 +4,13 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { useSelector, useDispatch } from 'react-redux';
 import { filterChange } from 'redux/store';
-import {
-  useGetContactsQuery,
-  useAddContactMutation,
-  useDeleteContactMutation,
-} from 'services/api';
+import { useGetContactsQuery, useAddContactMutation } from 'services/api';
 
 function App() {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.filter.filter);
   const { data: contacts, error, isLoading } = useGetContactsQuery();
 
-  const [deleteContact] = useDeleteContactMutation();
   const [addContact] = useAddContactMutation();
 
   const handleAdd = async contact => {
@@ -31,16 +26,6 @@ function App() {
       await addContact(contact);
     } catch (error) {
       alert(error);
-    }
-  };
-
-  const handleDelete = async contactId => {
-    if (global.confirm('Delete contact?')) {
-      try {
-        deleteContact(contactId);
-      } catch (error) {
-        alert(error);
-      }
     }
   };
 
@@ -76,10 +61,7 @@ function App() {
         {isLoading ? (
           'Loading...'
         ) : (
-          <ContactList
-            contacts={filteredContacts ?? []}
-            deleteContact={handleDelete}
-          />
+          <ContactList contacts={filteredContacts ?? []} />
         )}
       </Box>
     </Box>
