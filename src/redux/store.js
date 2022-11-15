@@ -1,35 +1,7 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 import { phonebookApi } from 'services/api';
-
-// const startData = [
-//   {
-//     id: nanoid(4),
-//     name: 'Arnold Schwarzenegger',
-//     number: '5558801',
-//     createdAt: '2022-11-14T00:42:34.001Z',
-//   },
-//   {
-//     id: nanoid(4),
-//     name: 'Sylvester Stallone',
-//     number: '5558802',
-//     createdAt: '2022-11-14T00:42:34.001Z',
-//   },
-//   {
-//     id: nanoid(4),
-//     name: 'Bruce Willis',
-//     number: '5558803',
-//     createdAt: '2022-11-14T00:42:34.001Z',
-//   },
-//   {
-//     id: nanoid(4),
-//     name: 'Jason Statham',
-//     number: '5558804',
-//     createdAt: '2022-11-14T00:42:34.001Z',
-//   },
-// ];
-
-// const savedData = JSON.parse(localStorage.getItem('phonebook'));
+import { useDeleteContactMutation } from 'services/api';
 
 const myContacts = createSlice({
   name: 'phonebook',
@@ -56,7 +28,7 @@ const myContacts = createSlice({
         };
         state.contacts.push(newContact);
       }
-      localStorage.setItem('phonebook', JSON.stringify(state.contacts));
+      // localStorage.setItem('phonebook', JSON.stringify(state.contacts));
     },
     deleteContact(state, action) {
       if (global.confirm('Delete contact?')) {
@@ -64,11 +36,11 @@ const myContacts = createSlice({
           ({ id }) => id !== action.payload
         );
       }
-      localStorage.setItem('phonebook', JSON.stringify(state.contacts));
+      // localStorage.setItem('phonebook', JSON.stringify(state.contacts));
     },
     filterChange: (state, action) => {
       state.filter = action.payload;
-      localStorage.setItem('phonebook', JSON.stringify(state.contacts));
+      // localStorage.setItem('phonebook', JSON.stringify(state.contacts));
     },
   },
 });

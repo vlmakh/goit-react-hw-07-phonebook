@@ -1,20 +1,21 @@
-import { Box } from './Box/Box';
-import { AddForm } from './AddForm/AddForm';
+import { Box } from 'components/Box/Box';
+import { AddForm } from 'components/AddForm/AddForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact, deleteContact, filterChange } from 'redux/store';
 import { useGetContactsQuery } from 'services/api'
 
 function App() {
   const dispatch = useDispatch();
+  // const [filter, setFilter] = useState('')
   // const contacts = useSelector(state => state.phonebook.contacts);
   const filter = useSelector(state => state.phonebook.filter);
   const { data, error, isLoading } = useGetContactsQuery();
-  console.log(data)
+  console.log(filter)
   
-  // const state = useSelector(state => state);
-  // console.log(state)
+ 
 
   const handleAdd = contact => {
     dispatch(addContact(contact));
@@ -39,17 +40,19 @@ function App() {
       <AddForm onSubmit={handleAdd} />
 
       <Box
-        p={3}
+        py={3}
         mt={2}
         border="1px solid #212121"
         borderRadius={3}
         boxShadow="0px 4px 8px rgba(0, 0, 0, 0.2)"
       >
         <h2>Contacts</h2>
-
         <Filter value={filter} onChange={handleFilter} />
 
-        <ContactList contacts={data ?? []} deleteContact={handleDelete} />
+        {error && <p>Sorry, there is some error. Please try to reload page...</p>}
+
+        {isLoading ? ('Loading...') : <ContactList contacts={data ?? []} deleteContact={handleDelete} />}
+        
       </Box>
     </Box>
   );

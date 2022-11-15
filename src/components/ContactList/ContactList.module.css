@@ -1,15 +1,17 @@
 .contactList {
-  margin: 16px 0 0 0;
+  margin: 0;
   padding: 0;
 }
 
 .contactItem {
   display: flex;
   align-items: center;
+  padding: 4px 8px;
 }
 
 .contactItem:not(:first-child) {
-  margin-top: 8px;
+  /* margin-top: 8px; */
+  color: #212121;
 }
 
 .contactName {
@@ -19,19 +21,19 @@
 }
 
 .contactNumber {
-  margin: 0 16px 0 auto;
+  margin: 0 4px 0 auto;
 }
 
 .delButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  /* width: 20px;
+  height: 20px; */
   padding: 0;
   background-color: transparent;
   border: none;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   cursor: pointer;
   color:#212121;
 
