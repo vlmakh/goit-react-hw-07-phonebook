@@ -13,25 +13,34 @@ import {
 function App() {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.filter.filter);
-  const { data, error, isLoading } = useGetContactsQuery();
-  
-  const [deleteContact, result] = useDeleteContactMutation();
-  const [addContact, result1] = useAddContactMutation();
+  const { data: contacts, error, isLoading } = useGetContactsQuery();
+
+  const [deleteContact] = useDeleteContactMutation();
+  const [addContact] = useAddContactMutation();
 
   const handleAdd = async contact => {
+    if (
+      contacts.find(
+        person => person.name.toLowerCase() === contact.name.toLowerCase()
+      )
+    ) {
+      alert(` ${contact.name} is already in contacts.`);
+      return;
+    }
     try {
       await addContact(contact);
-      alert('Condact added');
     } catch (error) {
       alert(error);
     }
   };
 
   const handleDelete = async contactId => {
-    try {
-      deleteContact(contactId);
-    } catch (error) {
-      alert(error);
+    if (global.confirm('Delete contact?')) {
+      try {
+        deleteContact(contactId);
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 
@@ -39,10 +48,11 @@ function App() {
     dispatch(filterChange(event.currentTarget.value));
   };
 
-  const normalizedFilter = filter.toLowerCase();
-  const filteredContacts = data.filter(el =>
-    el.name.toLowerCase().includes(normalizedFilter)
-  );
+  const filteredContacts = contacts
+    ? contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      )
+    : '';
 
   return (
     <Box width="360px" mx="auto" py={2}>
@@ -66,7 +76,10 @@ function App() {
         {isLoading ? (
           'Loading...'
         ) : (
-          <ContactList contacts={filteredContacts ?? []} deleteContact={handleDelete} />
+          <ContactList
+            contacts={filteredContacts ?? []}
+            deleteContact={handleDelete}
+          />
         )}
       </Box>
     </Box>
