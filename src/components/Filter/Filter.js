@@ -4,7 +4,7 @@ import { Box } from 'components/Box/Box';
 
 export function Filter({ value, onChange }) {
   return (
-    <Box p={3}>
+    <Box p={2}>
       <input
         className={css.filterInput}
         type="text"

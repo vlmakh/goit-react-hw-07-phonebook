@@ -40,18 +40,19 @@ function App() {
     : '';
 
   return (
-    <Box width="360px" mx="auto" py={2}>
+    <Box width="320px" mx="auto" py={2}>
       <h1>Phonebook</h1>
       <AddForm onSubmit={handleAdd} />
 
       <Box
-        py={3}
+        py={2}
         mt={2}
         border="1px solid #212121"
         borderRadius={3}
-        boxShadow="0px 4px 8px rgba(0, 0, 0, 0.2)"
+        boxShadow="0px 4px 8px rgba(0, 0, 0, 0.8)"
+        backgroundColor="white"
       >
-        <h2>Contacts</h2>
+        {/* <h2>Contacts</h2> */}
         <Filter value={filter} onChange={handleFilter} />
 
         {error && (

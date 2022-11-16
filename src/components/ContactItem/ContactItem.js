@@ -17,9 +17,13 @@ export function ContactItem({ id, name, number }) {
     }
   };
 
+  function getRandomHexColor() {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  }
+
   return (
     <>
-      <BsPersonCircle size="16" />
+      <BsPersonCircle size="18" color={getRandomHexColor()} />
       <span className={css.contactName}>{name}</span>
       <span className={css.contactNumber}>{number}</span>
       <button

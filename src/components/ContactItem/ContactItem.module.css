@@ -6,6 +6,7 @@
 
 .contactNumber {
   margin: 0 4px 0 auto;
+  font-size: 14px;
 }
 
 .delButton {
@@ -16,7 +17,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #212121;
+  color: #666666;
 
   transition: color 250ms linear;
 }

@@ -3,5 +3,10 @@
   align-items: center;
   padding: 4px 8px;
   color: #212121;
+
+  transition: background-color 250ms linear;
 }
 
+.contactItem:hover {
+  background-color: lightgrey;
+}
