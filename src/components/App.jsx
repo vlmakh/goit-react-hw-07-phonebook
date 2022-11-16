@@ -52,7 +52,6 @@ function App() {
         boxShadow="0px 4px 8px rgba(0, 0, 0, 0.8)"
         backgroundColor="white"
       >
-        {/* <h2>Contacts</h2> */}
         <Filter value={filter} onChange={handleFilter} />
 
         {error && (

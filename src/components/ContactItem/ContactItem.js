@@ -43,4 +43,5 @@ ContactItem.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   number: PropTypes.string,
+  createdAt: PropTypes.string,
 };
