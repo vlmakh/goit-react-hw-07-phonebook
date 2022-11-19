@@ -1,38 +1,37 @@
 import PropTypes from 'prop-types';
-import css from './AddForm.module.css';
+import css from './EditForm.module.css';
 import { HiPhone, HiUserAdd } from 'react-icons/hi';
-import { MdOutlineDataSaverOn } from 'react-icons/md';
+import { MdSave } from 'react-icons/md';
 import { Box } from 'components/Box/Box';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
 let schema = yup.object().shape({
   name: yup.string().required(),
-  number: yup.number().required(),
+  number: yup.string().required(),
 });
 
-export function AddForm({ onFormSubmit }) {
-  const addContact = (values, { resetForm }) => {
+export function EditForm({ onFormSubmit, nameToUpdate, numberToUpdate }) {
+  const updateContact = values => {
     onFormSubmit(values);
-    resetForm();
   };
 
   return (
     <Formik
-      onSubmit={addContact}
+      onSubmit={updateContact}
       initialValues={{
-        name: '',
-        number: '',
+        name: nameToUpdate,
+        number: numberToUpdate,
       }}
       validationSchema={schema}
     >
-      <Form className={css.addForm}>
+      <Form className={css.editForm}>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Box>
             <Box display="flex" alignItems="center" position="relative">
               <HiUserAdd />
               <Field
-                className={css.addInput}
+                className={css.editInput}
                 type="text"
                 name="name"
                 placeholder="Name"
@@ -47,7 +46,7 @@ export function AddForm({ onFormSubmit }) {
             <Box display="flex" alignItems="center" mt={3} position="relative">
               <HiPhone />
               <Field
-                className={css.addInput}
+                className={css.editInput}
                 type="tel"
                 name="number"
                 placeholder="number"
@@ -62,10 +61,10 @@ export function AddForm({ onFormSubmit }) {
 
           <button
             type="submit"
-            className={css.addButton}
-            aria-label="Add contact"
+            className={css.saveButton}
+            aria-label="Save contact"
           >
-            <MdOutlineDataSaverOn size="40" fill="currentColor" />
+            <MdSave size="40" />
           </button>
         </Box>
       </Form>
@@ -73,6 +72,8 @@ export function AddForm({ onFormSubmit }) {
   );
 }
 
-AddForm.propTypes = {
+EditForm.propTypes = {
   onFormSubmit: PropTypes.func,
+  nameToUpdate: PropTypes.string,
+  numberToUpdate: PropTypes.string,
 };
