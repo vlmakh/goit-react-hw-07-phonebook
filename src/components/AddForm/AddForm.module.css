@@ -1,7 +1,7 @@
 .addForm {
   text-align: left;
-  width: 100%;
-  margin: 8px auto 0;
+  width: 320px;
+  /* margin: 8px auto 0; */
   padding: 16px;
   border: 1px solid #212121;
   border-radius: 4px;

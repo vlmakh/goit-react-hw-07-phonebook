@@ -10,7 +10,6 @@ function App() {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.filter.filter);
   const { data: contacts, error, isLoading } = useGetContactsQuery();
-
   const [addContact] = useAddContactMutation();
 
   const handleAdd = async contact => {
@@ -40,9 +39,8 @@ function App() {
     : '';
 
   return (
-    <Box width="320px" mx="auto" py={2}>
-      <h1>Phonebook</h1>
-      <AddForm onSubmit={handleAdd} />
+    <Box width="320px" mx="auto" position="relative">
+      <AddForm onFormSubmit={handleAdd} />
 
       <Box
         py={2}

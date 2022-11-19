@@ -6,11 +6,13 @@ export const phonebookApi = createApi({
     baseUrl: 'https://636f19ecbb9cf402c80fc491.mockapi.io',
   }),
   tagTypes: ['Contact'],
+
   endpoints: builder => ({
     getContacts: builder.query({
       query: () => `/phonebook`,
       providesTags: ['Contact'],
     }),
+
     addContact: builder.mutation({
       query: newContact => ({
         url: `/phonebook`,
@@ -19,6 +21,16 @@ export const phonebookApi = createApi({
       }),
       invalidatesTags: ['Contact'],
     }),
+
+    updateContact: builder.mutation({
+      query: ({ id, ...newContact }) => ({
+        url: `/phonebook/${id}`,
+        method: 'PUT',
+        body: newContact,
+      }),
+      invalidatesTags: ['Contact'],
+    }),
+
     deleteContact: builder.mutation({
       query: id => ({
         url: `phonebook/${id}`,
@@ -32,5 +44,6 @@ export const phonebookApi = createApi({
 export const {
   useGetContactsQuery,
   useAddContactMutation,
+  useUpdateContactMutation,
   useDeleteContactMutation,
 } = phonebookApi;
