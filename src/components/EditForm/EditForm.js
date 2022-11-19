@@ -73,5 +73,7 @@ export function EditForm({ onFormSubmit, nameToUpdate, numberToUpdate }) {
 }
 
 EditForm.propTypes = {
-  onSubmit: PropTypes.func,
+  onFormSubmit: PropTypes.func,
+  nameToUpdate: PropTypes.string,
+  numberToUpdate: PropTypes.string,
 };

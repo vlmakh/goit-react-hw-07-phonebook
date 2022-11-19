@@ -74,5 +74,5 @@ export function AddForm({ onFormSubmit }) {
 }
 
 AddForm.propTypes = {
-  onSubmit: PropTypes.func,
+  onFormSubmit: PropTypes.func,
 };
