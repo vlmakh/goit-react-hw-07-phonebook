@@ -12,20 +12,21 @@ function App() {
   const { data: contacts, error, isLoading } = useGetContactsQuery();
   const [addContact] = useAddContactMutation();
 
-  const handleAdd = async contact => {
+  const handleAdd = async (newContact, resetForm) => {
     if (
       contacts.find(
-        person => person.name.toLowerCase() === contact.name.toLowerCase()
+        contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
       )
     ) {
-      alert(` ${contact.name} is already in contacts.`);
+      alert(` ${newContact.name} is already in contacts.`);
       return;
     }
     try {
-      await addContact(contact);
+      await addContact(newContact);
     } catch (error) {
       alert(error);
     }
+    finally{resetForm();}
   };
 
   const handleFilter = event => {

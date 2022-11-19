@@ -13,8 +13,7 @@ let schema = yup.object().shape({
 
 export function AddForm({ onFormSubmit }) {
   const addContact = (values, { resetForm }) => {
-    onFormSubmit(values);
-    resetForm();
+    onFormSubmit(values, resetForm);
   };
 
   return (
