@@ -11,7 +11,7 @@ import Modal from 'components/Modal/Modal';
 import { EditForm } from 'components/EditForm/EditForm';
 import { Box } from 'components/Box/Box';
 
-export function ContactItem({ id, name, number }) {
+export function ContactItem({ id, name, number, contacts }) {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
   const [updateContact] = useUpdateContactMutation();
   const [showEditForm, setShowEditForm] = useState(false);
@@ -31,6 +31,14 @@ export function ContactItem({ id, name, number }) {
   };
 
   const handleUpdate = async newContact => {
+    if (
+      contacts.find(
+        person => person.name.toLowerCase() === newContact.name.toLowerCase()
+      )
+    ) {
+      alert(` ${newContact.name} is already in contacts.`);
+      return;
+    }
     try {
       updateContact({ id, ...newContact });
     } catch (error) {
@@ -46,11 +54,12 @@ export function ContactItem({ id, name, number }) {
 
   return (
     <>
-      <BsPersonCircle size="18" color={getRandomHexColor()} />
-      <span className={css.contactName} onClick={toggleEditForm}>
-        {name}
-      </span>
-      <span className={css.contactNumber}>{number}</span>
+      <Box width="100%" display="flex" onClick={toggleEditForm}>
+        <BsPersonCircle size="18" color={getRandomHexColor()} />
+        <span className={css.contactName}>{name}</span>
+        <span className={css.contactNumber}>{number}</span>
+      </Box>
+
       <button
         type="button"
         className={css.delButton}

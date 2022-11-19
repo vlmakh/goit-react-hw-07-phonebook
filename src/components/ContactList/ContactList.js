@@ -9,7 +9,12 @@ export function ContactList({ contacts }) {
         .sort((a, b) => a.name.localeCompare(b.name))
         .map(({ id, name, number }) => (
           <li key={id} className={css.contactItem}>
-            <ContactItem id={id} name={name} number={number} />
+            <ContactItem
+              id={id}
+              name={name}
+              number={number}
+              contacts={contacts}
+            />
           </li>
         ))}
     </ul>
