@@ -23,10 +23,10 @@ export const phonebookApi = createApi({
     }),
 
     updateContact: builder.mutation({
-      query: ({ id, ...newContact }) => ({
+      query: ({ id, ...updatedContact }) => ({
         url: `/phonebook/${id}`,
         method: 'PUT',
-        body: newContact,
+        body: updatedContact,
       }),
       invalidatesTags: ['Contact'],
     }),

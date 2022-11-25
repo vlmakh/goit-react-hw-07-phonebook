@@ -30,17 +30,19 @@ export function ContactItem({ id, name, number, contacts }) {
     }
   };
 
-  const handleUpdate = async newContact => {
+  const handleUpdate = async updatedContact => {
     if (
       contacts.find(
-        person => person.name.toLowerCase() === newContact.name.toLowerCase()
+        contact =>
+          contact.name.toLowerCase() === updatedContact.name.toLowerCase() &&
+          contact.id !== id
       )
     ) {
-      alert(` ${newContact.name} is already in contacts.`);
+      alert(` ${updatedContact.name} is already in contacts.`);
       return;
     }
     try {
-      updateContact({ id, ...newContact });
+      updateContact({ id, ...updatedContact });
     } catch (error) {
       alert(error);
     } finally {
