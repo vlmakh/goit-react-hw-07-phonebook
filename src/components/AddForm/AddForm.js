@@ -12,13 +12,13 @@ let schema = yup.object().shape({
 });
 
 export function AddForm({ onFormSubmit }) {
-  const addContact = (values, { resetForm }) => {
+  const handleSubmit = (values, { resetForm }) => {
     onFormSubmit(values, resetForm);
   };
 
   return (
     <Formik
-      onSubmit={addContact}
+      onSubmit={handleSubmit}
       initialValues={{
         name: '',
         number: '',
@@ -73,5 +73,5 @@ export function AddForm({ onFormSubmit }) {
 }
 
 AddForm.propTypes = {
-  onFormSubmit: PropTypes.func,
+  onFormSubmit: PropTypes.func.isRequired,
 };

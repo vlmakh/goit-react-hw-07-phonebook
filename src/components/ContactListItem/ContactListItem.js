@@ -88,8 +88,8 @@ export function ContactListItem({ id, name, number, contacts }) {
 }
 
 ContactListItem.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  number: PropTypes.string,
-  contacts: PropTypes.array,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  contacts: PropTypes.array.isRequired,
 };

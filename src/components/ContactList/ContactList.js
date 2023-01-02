@@ -22,11 +22,5 @@ export function ContactList({ contacts }) {
 }
 
 ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.string,
-    })
-  ),
+  contacts: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
