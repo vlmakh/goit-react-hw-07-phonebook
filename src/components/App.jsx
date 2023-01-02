@@ -5,6 +5,7 @@ import { Filter } from 'components/Filter/Filter';
 import { useSelector, useDispatch } from 'react-redux';
 import { filterChange } from 'redux/store';
 import { useGetContactsQuery, useAddContactMutation } from 'services/api';
+import { Notification } from 'components/Notification/Notification';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,8 +26,9 @@ function App() {
       await addContact(newContact);
     } catch (error) {
       alert(error);
+    } finally {
+      resetForm();
     }
-    finally{resetForm();}
   };
 
   const handleFilter = event => {
@@ -51,7 +53,11 @@ function App() {
         boxShadow="0px 4px 8px rgba(0, 0, 0, 0.8)"
         backgroundColor="white"
       >
-        <Filter value={filter} onChange={handleFilter} />
+        {filteredContacts.length > 0 || filter ? (
+          <Filter value={filter} onChange={handleFilter} />
+        ) : (
+          <Notification msg="No contacts added" />
+        )}
 
         {error && (
           <p>Sorry, there is some error. Please try to reload page...</p>
