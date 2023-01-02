@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import css from './ContactItem.module.css';
+import css from './ContactListItem.module.css';
 import { MdDeleteForever } from 'react-icons/md';
 import { BsPersonCircle } from 'react-icons/bs';
 import {
@@ -11,7 +11,7 @@ import Modal from 'components/Modal/Modal';
 import { EditForm } from 'components/EditForm/EditForm';
 import { Box } from 'components/Box/Box';
 
-export function ContactItem({ id, name, number, contacts }) {
+export function ContactListItem({ id, name, number, contacts }) {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
   const [updateContact] = useUpdateContactMutation();
   const [showEditForm, setShowEditForm] = useState(false);
@@ -87,7 +87,7 @@ export function ContactItem({ id, name, number, contacts }) {
   );
 }
 
-ContactItem.propTypes = {
+ContactListItem.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   number: PropTypes.string,

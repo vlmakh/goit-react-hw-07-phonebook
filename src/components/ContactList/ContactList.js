@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import css from './ContactList.module.css';
-import { ContactItem } from 'components/ContactItem/ContactItem';
+import { ContactListItem } from 'components/ContactListItem/ContactListItem';
 
 export function ContactList({ contacts }) {
   return (
@@ -9,7 +9,7 @@ export function ContactList({ contacts }) {
         .sort((a, b) => a.name.localeCompare(b.name))
         .map(({ id, name, number }) => (
           <li key={id} className={css.contactItem}>
-            <ContactItem
+            <ContactListItem
               id={id}
               name={name}
               number={number}
