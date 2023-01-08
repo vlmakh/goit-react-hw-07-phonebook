@@ -8,7 +8,7 @@ export const phonebookApi = createApi({
   tagTypes: ['Contact'],
 
   endpoints: builder => ({
-    getContacts: builder.query({
+    fetchContacts: builder.query({
       query: () => `/phonebook`,
       providesTags: ['Contact'],
     }),
@@ -42,7 +42,7 @@ export const phonebookApi = createApi({
 });
 
 export const {
-  useGetContactsQuery,
+  useFetchContactsQuery,
   useAddContactMutation,
   useUpdateContactMutation,
   useDeleteContactMutation,

@@ -4,18 +4,18 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { useSelector, useDispatch } from 'react-redux';
 import { filterChange } from 'redux/store';
-import { useGetContactsQuery, useAddContactMutation } from 'services/api';
+import { useFetchContactsQuery, useAddContactMutation } from 'services/api';
 import { Notification } from 'components/Notification/Notification';
 
 function App() {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.filter.filter);
-  const { data: contacts, error, isLoading } = useGetContactsQuery();
+  const { data: contacts, error, isLoading } = useFetchContactsQuery();
   const [addContact] = useAddContactMutation();
 
   const handleAdd = async (newContact, resetForm) => {
     if (
-      contacts.find(
+      contacts.some(
         contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
       )
     ) {
