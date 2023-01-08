@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import css from './Filter.module.css';
 import { Box } from 'components/Box/Box';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,8 +24,3 @@ export function Filter() {
     </Box>
   );
 }
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
