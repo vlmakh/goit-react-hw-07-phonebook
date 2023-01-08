@@ -2,13 +2,11 @@ import { Box } from 'components/Box/Box';
 import { AddForm } from 'components/AddForm/AddForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { useSelector, useDispatch } from 'react-redux';
-import { filterChange } from 'redux/store';
+import { useSelector } from 'react-redux';
 import { useFetchContactsQuery, useAddContactMutation } from 'services/api';
 import { Notification } from 'components/Notification/Notification';
 
 function App() {
-  const dispatch = useDispatch();
   const filter = useSelector(state => state.filter.filter);
   const { data: contacts, error, isLoading } = useFetchContactsQuery();
   const [addContact] = useAddContactMutation();
@@ -31,10 +29,6 @@ function App() {
     }
   };
 
-  const handleFilter = event => {
-    dispatch(filterChange(event.currentTarget.value));
-  };
-
   const filteredContacts = contacts
     ? contacts.filter(contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -54,7 +48,7 @@ function App() {
         backgroundColor="white"
       >
         {filteredContacts.length > 0 || filter ? (
-          <Filter value={filter} onChange={handleFilter} />
+          <Filter />
         ) : (
           <Notification msg="No contacts added" />
         )}
