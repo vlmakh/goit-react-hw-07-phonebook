@@ -64,7 +64,7 @@ function App() {
         )}
 
         {isLoading ? (
-          'Loading...'
+          <Notification msg="Loading..." />
         ) : (
           <ContactList contacts={filteredContacts ?? []} />
         )}
