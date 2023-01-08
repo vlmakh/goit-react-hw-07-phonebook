@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const contactsApi = createApi({
-  reducerPath: 'phonebook',
+  reducerPath: 'contacts',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://636f19ecbb9cf402c80fc491.mockapi.io',
   }),
@@ -33,7 +33,7 @@ export const contactsApi = createApi({
 
     deleteContact: builder.mutation({
       query: id => ({
-        url: `phonebook/${id}`,
+        url: `/phonebook/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Contact'],
