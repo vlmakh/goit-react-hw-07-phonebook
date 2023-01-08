@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { phonebookApi } from 'services/api';
+import { contactsApi } from 'redux/contactsSlice';
 
 const myFilter = createSlice({
   name: 'filter',
@@ -17,9 +17,9 @@ export const { filterChange } = myFilter.actions;
 
 export const store = configureStore({
   reducer: {
-    [phonebookApi.reducerPath]: phonebookApi.reducer,
+    [contactsApi.reducerPath]: contactsApi.reducer,
     filter: myFilter.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(phonebookApi.middleware),
+    getDefaultMiddleware().concat(contactsApi.middleware),
 });

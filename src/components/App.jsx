@@ -3,7 +3,7 @@ import { AddForm } from 'components/AddForm/AddForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { useSelector } from 'react-redux';
-import { useFetchContactsQuery, useAddContactMutation } from 'services/api';
+import { useFetchContactsQuery, useAddContactMutation } from 'redux/contactsSlice';
 import { Notification } from 'components/Notification/Notification';
 
 function App() {

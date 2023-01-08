@@ -5,7 +5,7 @@ import { BsPersonCircle } from 'react-icons/bs';
 import {
   useDeleteContactMutation,
   useUpdateContactMutation,
-} from 'services/api';
+} from 'redux/contactsSlice';
 import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import { EditForm } from 'components/EditForm/EditForm';
