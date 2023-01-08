@@ -1,7 +1,7 @@
 import css from './Filter.module.css';
 import { Box } from 'components/Box/Box';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterChange } from 'redux/store';
+import { filterChange } from 'redux/filterSlice';
 
 export function Filter() {
   const dispatch = useDispatch();

@@ -1,24 +1,11 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { contactsApi } from 'redux/contactsSlice';
-
-const myFilter = createSlice({
-  name: 'filter',
-  initialState: {
-    filter: '',
-  },
-  reducers: {
-    filterChange: (state, action) => {
-      state.filter = action.payload;
-    },
-  },
-});
-
-export const { filterChange } = myFilter.actions;
+import { configureStore } from '@reduxjs/toolkit';
+import { contactsApi } from './contactsSlice';
+import { filterSlice } from './filterSlice';
 
 export const store = configureStore({
   reducer: {
     [contactsApi.reducerPath]: contactsApi.reducer,
-    filter: myFilter.reducer,
+    filter: filterSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(contactsApi.middleware),
