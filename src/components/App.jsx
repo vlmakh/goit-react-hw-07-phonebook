@@ -3,31 +3,12 @@ import { AddForm } from 'components/AddForm/AddForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { useSelector } from 'react-redux';
-import { useFetchContactsQuery, useAddContactMutation } from 'redux/contactsSlice';
+import { useFetchContactsQuery } from 'redux/contactsSlice';
 import { Notification } from 'components/Notification/Notification';
 
 function App() {
   const filter = useSelector(state => state.filter.filter);
   const { data: contacts, error, isLoading } = useFetchContactsQuery();
-  const [addContact] = useAddContactMutation();
-
-  const handleAdd = async (newContact, resetForm) => {
-    if (
-      contacts.some(
-        contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
-      )
-    ) {
-      alert(` ${newContact.name} is already in contacts.`);
-      return;
-    }
-    try {
-      await addContact(newContact);
-    } catch (error) {
-      alert(error);
-    } finally {
-      resetForm();
-    }
-  };
 
   const filteredContacts = contacts
     ? contacts.filter(contact =>
@@ -37,7 +18,7 @@ function App() {
 
   return (
     <Box width="320px" mx="auto" position="relative">
-      <AddForm onFormSubmit={handleAdd} />
+      <AddForm />
 
       <Box
         py={2}
